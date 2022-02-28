@@ -16,7 +16,7 @@ public class HttpDownloader{
         if(URLRaw.contains("/lor/")) apikey= Config.get("runeterra");
 
         URL url = new URL("https://"+ServerURL+".api.riotgames.com"+URLRaw+"?api_key="+apikey);
-        return Bot.HttpDownloader.HttpDownloader.Download(url);
+        return new Bot.HttpDownloader.HttpDownloader().Download(url);
     }
 
     public static String download(String URLRaw, String ServerURL, String something) throws IOException, HttpException {
@@ -27,10 +27,10 @@ public class HttpDownloader{
         if(URLRaw.contains("/lor/")) apikey= Config.get("runeterra");
 
         URL url = new URL("https://"+ServerURL+".api.riotgames.com"+URLRaw+"?api_key="+apikey+something);
-        return Bot.HttpDownloader.HttpDownloader.Download(url);
+        return new Bot.HttpDownloader.HttpDownloader().Download(url);
     }
 
     public static String download(URL url) {
-        return Bot.HttpDownloader.HttpDownloader.Download(url);
+        return new Bot.HttpDownloader.HttpDownloader().Download(url);
     }
 }

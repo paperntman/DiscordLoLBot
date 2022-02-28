@@ -30,6 +30,9 @@ public class Main {
         jda = JDABuilder.createDefault(Config.get("token")).addEventListeners(new Listener(), new CommandManager()).build().awaitReady();
         championUpdate();
         CommandManager.CommandManager(jda);
+        new Thread(() -> new Bot.Data.TFTDownloader.TFTJsonDownloader().check()).start();
+        new Thread(() -> new Bot.Data.LoLDownloader.LoLJsonDownloader().check()).start();
+        logger.info("everything started");
     }
 
     private void championUpdate() throws IOException, ParseException {

@@ -13,6 +13,7 @@ import java.util.List;
 
 public class CommandManager extends ListenerAdapter {
     private static List<CommandData> commandDataList = new ArrayList<>();
+    protected static ArrayList<String> lanes = new ArrayList<>();
 
     public static void CommandManager(JDA jda) {
         commandDataList.add(new CommandData("mkch", "임시 채널을 생성합니다.")
@@ -20,6 +21,7 @@ public class CommandManager extends ListenerAdapter {
                 .addOption(OptionType.STRING, "title", "방의 제목입니다. 입력하지 않을 시 '임시'로 고정됩니다.", false));
         commandDataList.add(new CommandData("number", "1부터 100까지의 숫자를 얻습니다."));
         commandDataList.add(new CommandData("champion", "챔피언 하나의 이름을 불러옵니다."));
+        commandDataList.add(new CommandData("lane", "랜덤으로 라인 하나를 불러옵니다."));
         for (Guild guild : jda.getGuilds()) {
             guild.retrieveCommands().complete().stream().filter(command -> command.getApplicationId().equals(jda.getSelfUser().getId())).forEach(command -> guild.deleteCommandById(command.getId()).complete());
             commandDataList.forEach(data -> guild.upsertCommand(data).queue());
